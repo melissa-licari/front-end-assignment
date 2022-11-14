@@ -1,0 +1,207 @@
+html {
+    font-family: "Roboto";
+    font-size: 14px;
+    line-height: 2;
+    }
+    
+    #main {
+      display: grid;
+      min-width: 100%;
+      grid-template-columns: 3fr 10fr;
+      grid-template-rows: auto auto;
+      grid-template-areas: "heading heading"
+                           "left-navigation main-nav"
+    }
+    
+    #heading {
+      grid-area: heading;
+      clear: both;
+      background-color: #dc4c3e;
+      color: #ffffff;
+      border-radius: 5px;
+      display: flex;
+      height: 30px;
+      align-items: center;
+      padding-left: 50px;
+      position: absolute;
+      min-width: 800px;
+      resize: horizontal;
+      float: left;
+    }
+    
+    .quickfind {
+      border-radius: 5px;
+      border: none;
+      opacity: .5;
+    }
+    
+    .right-heading {
+    right: 4%;
+    position: absolute;
+    }
+    
+    #left-navigation {
+      grid-area: left-navigation;
+      background-color: #fefbf2;
+      color: #000000;
+      width: 300px;
+      height: 100%;
+      position: fixed;
+      top: 39px;
+      border-radius: 5px;
+    }
+    
+    .task-count {
+      color: #7e7d79;
+    }
+    
+    .collapsible {
+      background-color: #fefbf2;
+      color: #000000;
+      cursor: pointer;
+      width: 100%;
+      border: none;
+      text-align: left;
+      outline: none;
+      text-indent: -1em;
+      font-family: "Roboto";
+      font-size: 14px;
+    }
+
+    .collapsible:after {
+      -webkit-transform: rotate(90deg);
+      -moz-transform: rotate(90deg);
+      -ms-transform: rotate(90deg);
+      transform: rotate(90deg);
+    }
+    
+    .active, .collapsible:hover {
+      background-color: #fefbf2;
+      color: #000000;
+    }
+    
+    .content {
+      padding: 0 18px;
+      display: none;
+      overflow: hidden;
+      background-color: #fefbf2;
+      color: #000000;
+    }
+    
+    ul
+    {
+        list-style-type: none;
+        text-indent: -1em;
+    }
+    
+    #arrow {
+      color: #7e7d79
+    }
+    
+    #circle {
+      color: #7e7d79
+    }
+    
+    .first li:first-child::before
+    {
+      color: #0092E4
+    }
+    
+    .first li:nth-child(2)::before
+    {
+      color: #1ea159
+    }
+    
+    .first li:nth-child(3)::before
+    {
+      color: #771ea1
+    }
+    
+    .first li:nth-child(4)::before
+    {
+      color: #7e7d79;
+    }
+    
+    .second li:nth-child(1)::before
+    {
+      color: #ccd63a
+    }
+    .second li:nth-child(2)::before
+    {
+      color: #0092E4
+    }
+    
+    .second li:nth-child(3)::before
+    {
+      color: #dc4c3e;
+    }
+    
+    .second li:nth-child(4)::before
+    {
+      color: #1ea159
+    }
+    
+    .third li:nth-child(1)::before
+    {
+      color: #d47924
+    }
+    
+    .third li:nth-child(1)::before
+    {
+      color: #d47924
+    }
+    
+    .fourth li:nth-child(6)::before
+    {
+      color: #d47924
+    }
+    
+    #main-nav {
+      grid-area: main-nav;
+      min-width: 200px;
+      position: absolute;
+      left: 350px;
+      top: 20px;
+    }
+    
+      input[type=checkbox] {
+        appearance: none;
+        -webkit-appearance: none;
+        -moz-appearance: none;
+        padding: 5px;
+        border: 2px solid #7e7d79;
+        border-radius:50%;
+        position: relative;
+        top: 4px;
+     }
+     input[type=checkbox]:checked {
+        background-color: #1ea159;
+        border: 2px solid #7e7d79;
+        text-decoration: line-through;
+     }
+    
+    h1 {
+      font-size: 20px;
+    }
+
+    .addtask {
+      background-color: white;
+      border: none;
+      color: white;
+      text-decoration: none;
+      display: inline-block;
+    }
+
+    .hide {
+      background-color: transparent;
+      border: none;
+    }
+
+    #bars {
+      color: white;
+    }
+
+    #leftnavbtn {
+      background-color: transparent;
+      border: none;
+    }
