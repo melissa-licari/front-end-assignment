@@ -8,14 +8,19 @@ import "./styles.css"
 export const ItemContext = createContext();
 
 const currentList = [{"category": "Inbox", "name": "Call Mom", "isComplete": false}, {"category": "Inbox",
-"name": "Hello", "isComplete": false}]
+"name": "Finish Homework", "isComplete": false}, {"category": "Upcoming",
+"name": "Project", "isComplete": false}, {"category": "Today",
+"name": "Meal Prep", "isComplete": false}]
 
 function App() {
   var [tasks, setTasks] = useState([]);
   var [count, setCount] = useState(0);
+  var [icount,setIcount] = useState(0);
+  var [ucount,setUcount] = useState(0);
+  var [tcount,setTcount] = useState(0);
   var [category, setCategory] = useState("Inbox");
   var [hideLeftNav, setHideLeftNav] = useState(true);
-  var [val, setValue] = useState("");
+  const [match, setMatch] = useState("")
 
   useEffect(() => {
     setTasks([...currentList]);
@@ -43,8 +48,15 @@ function App() {
           setCategory,
           hideLeftNav,
           setHideLeftNav,
-          val,
-          setValue
+          match,
+          setMatch,
+          icount,
+          setIcount,
+          ucount,
+          setUcount,
+          tcount,
+          setTcount
+
         }}
       > <TopNav />
       {!hideLeftNav && <LeftNav />}

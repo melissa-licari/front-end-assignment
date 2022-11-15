@@ -177,7 +177,6 @@ html {
      input[type=checkbox]:checked {
         background-color: #1ea159;
         border: 2px solid #7e7d79;
-        text-decoration: line-through;
      }
     
     h1 {
@@ -201,7 +200,9 @@ html {
       color: white;
     }
 
-    #leftnavbtn {
+    .leftnavbtn {
       background-color: transparent;
       border: none;
     }
+
+    

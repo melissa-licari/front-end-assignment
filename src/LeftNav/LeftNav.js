@@ -2,7 +2,7 @@ import React, { useContext } from "react";
 import { ItemContext } from "../App";
 
 const LeftNav = () => {
-  var { category, setCategory, count } = useContext(ItemContext);
+  var { setCategory, icount, tcount, ucount } = useContext(ItemContext);
   
     function collapse(event) {
     event.classList.toggle("active");
@@ -13,7 +13,7 @@ const LeftNav = () => {
         content.style.display = "block";
     }
   }
-
+  
   const myFunction = x => {
     x.classList.toggle("uil-angle-right");
   }
@@ -22,9 +22,9 @@ const LeftNav = () => {
             <section id="left-navigation">
             <ul>
                 <ul className="first">
-                    <li className="uil uil-inbox"><button id="leftnavbtn" type="button" onClick={e => setCategory(e.target.value)} value="Inbox">&emsp;Inbox&emsp;<span className="task-count">{count}</span></button></li>
-                    <li className="uil uil-calendar-alt"><button id="leftnavbtn" type="button" onClick={e => setCategory(e.target.value)} value= "Today">&emsp;Today&emsp;<span className="task-count">{count}</span></button></li>
-                    <li className="uil uil-schedule"><button id="leftnavbtn" type="button" onClick={e => setCategory(e.target.value)} value="Upcoming">&emsp;Upcoming</button><span className="task-count">{count}</span></li>
+                    <li className="uil uil-inbox"><button className="leftnavbtn" id="Inbox" type="button" onClick={e => setCategory(e.target.value)} value="Inbox">&emsp;Inbox&emsp;<span className="task-count">{icount}</span></button></li>
+                    <li className="uil uil-calendar-alt"><button className="leftnavbtn" id="Today" type="button" onClick={e => setCategory(e.target.value)} value= "Today">&emsp;Today&emsp;<span className="task-count">{tcount}</span></button></li>
+                    <li className="uil uil-schedule"><button className="leftnavbtn" id="Upcoming" type="button" onClick={e => setCategory(e.target.value)} value="Upcoming">&emsp;Upcoming</button><span className="task-count">{ucount}</span></li>
                     <li className="uil uil-angle-down">&emsp;Projects</li>
                 </ul>
                 <li onClick={myFunction} className="uil uil-angle-down" id="arrow"><button onClick = {collapse} type="button" className="collapsible">&emsp;&emsp;<i className="uil uil-circle" id="circle"></i>&emsp;Work</button>

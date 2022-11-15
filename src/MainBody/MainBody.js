@@ -1,40 +1,91 @@
 import React, { useContext } from "react";
 import { ItemContext } from "../App";
 
-/*add tasks and save to json file. once saved, check category of json element and print json name item as list item.
-count each item of a category and each item overall.
-strike through task and change iscomplete value to complete.
-be able to edit tasks*/
-
 
 const MainBody = () => {
-  var { val,setValue, tasks, setTasks, category, setCount} =
+  var { tasks, setTasks, category, count, setCount, match, setIcount, setUcount, setTcount, icount, tcount, ucount} =
     useContext(ItemContext);
-
-    const complete = event => {
-    if (event.innerHTML.style.textDecoration) {
-      event.innerHTML.style.removeProperty('text-decoration');
-    } else {
-      event.innerHTML.style.setProperty('text-decoration', 'line-through');
+    
+    function strike(task) {
+      let n = task.name
+      if(task.isComplete === true) {
+        return (<s>{n}</s>)}
+      else {return (n)}
     }
-  };
+    function search() {
+      if (match === '') {
+        return tasks;
+      }
+   	  var newList = tasks.filter(i => i.name.indexOf(match) !== -1)
+	  return newList;
+    } 
 
-const addTask = (x) => {
-  console.log(x)
-  setTasks(tasks,{"category": category, "name": x, "isComplete": false})
-  setCount(tasks.length)}
-
-  const item = tasks.map((task, index) => 
-    <li><input key={index} type="checkbox" onClick={complete} id="check" name="check" value="check" />&emsp;{task.name}</li>)  
-
-
+  const item = search(tasks).map((task, index) => {
+  if(task.category === category) { 
+    return(
+    <li><input key={index} type="checkbox" onClick={() => {
+      if (task.isComplete === false) {
+        task.isComplete = true
+        setCount(count-1)
+        if (category === "Inbox") {
+          setIcount(icount-1)
+        }
+        else if (category === "Today") {
+          setTcount(tcount-1)
+        }
+        else {
+          setUcount(ucount-1)
+        }
+       }
+      else {
+        task.isComplete = false
+        setCount(count+1)
+        if (category === "Inbox") {
+          setIcount(icount+1)
+        }
+        else if (category === "Today") {
+          setTcount(tcount+1)
+        }
+        else {
+          setUcount(ucount+1)
+        }
+      }
+    setTasks(JSON.parse(JSON.stringify(tasks)))
+							}}
+    name="check" />{strike(task)} <button className="btn" style={{"background-color": "white", "border": "none"}} onClick={() => {
+      document.getElementById(index).style.visibility = "visible"
+      document.getElementById(index+'smt').style.visibility = "visible"
+    }}><i class="uil uil-edit"></i></button><input id={index} className = {index} placeholder={task.name} type="text" style={{"visibility": "hidden"}}/><input id={index+"smt"} type="submit" style={{"visibility": "hidden"}} onClick={() => {
+      task.name = document.getElementById(index).value
+      setTasks(JSON.parse(JSON.stringify(tasks)))
+      document.getElementById(index).style.visibility = "hidden"
+      document.getElementById(index+'smt').style.visibility = "hidden"
+    }}></input></li>  )}
+    })
+    setCount(icount+tcount+ucount)
+    
 return (
     <>
           <section id="main-nav">
           <h1>{category}</h1>
           <ul className="fourth" id="myBtn">
               {item}
-              <li className="uil uil-plus">&emsp;<form name="inputForm" ><input id = "addTask" name="input" type="text" placeholder="Add Task" value={val} onChange={e => setValue(e.target.val)} onSubmit={e => addTask(e.value)}></input></form></li>
+              <li className="uil uil-plus">&emsp;<input id="addTask" type="name" placeholder="Add Task" />  <input type="submit" value="Add Task" class="submit-btn" 
+						onClick={() => {
+							if(document.getElementById('addTask').value === ""){alert("Your task name is empty.")}
+							else{
+								tasks.push({"category": category, "name": document.getElementById('addTask').value, "isComplete": false});
+								if(category === "Inbox"){setTasks(JSON.parse(JSON.stringify(tasks)))
+                setCount(icount+ucount+tcount)
+                setIcount(icount+1)}
+								else if(category === "Today"){setTasks(JSON.parse(JSON.stringify(tasks)))
+                  setCount(icount+ucount+tcount)
+                  setTcount(tcount+1)}
+								else{setTasks(JSON.parse(JSON.stringify(tasks)))
+                  setCount(icount+ucount+tcount)
+                  setUcount(ucount+1)}
+								document.getElementById('addTask').value = ""
+						}}}/></li>
           </ul>
       </section>
     </>
